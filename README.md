@@ -125,3 +125,20 @@ Spring Boot在启动的时候从类路径下的META-INF/spring.factorys中获取
 
 J2EE的整体解决方案
 org\springframework\boot\spring-boot-autoconfigure\2.1.6.RELEASE\spring-boot-autoconfigure-2.1.6.RELEASE.jar  
+6. 使用Spring Initializer创建一个快速向导    
+
+1.IDE支持使用Spring Initializer
+
+自己选择需要的组件:例如web
+
+默认生成的SpringBoot项目
+
+- 主程序已经生成好了，我们只需要完成我们的逻辑
+
+- resources文件夹目录结构
+
+> static:保存所有的静态文件；js css images
+
+> templates:保存所有的模板页面；（Spring Boot默认jar包使用嵌入式的Tomcat,默认不支持JSP）；可以使用模板引擎(freemaker,thymeleaf).
+
+- application.properties:Spring Boot的默认配置，例如 server.port=9000
