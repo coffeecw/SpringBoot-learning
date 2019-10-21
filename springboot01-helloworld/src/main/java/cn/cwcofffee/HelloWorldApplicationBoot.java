@@ -10,6 +10,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class HelloWorldApplicationBoot {
     public static void main(String[] args) {
         //Spring Boot应用启动起来
-        SpringApplication.run(HelloWorldApplicationBoot.class,args);
+        SpringApplication.run(HelloWorldApplicationBoot.class, args);
     }
 }
