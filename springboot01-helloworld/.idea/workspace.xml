@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8b6038ea-3126-44e7-8c44-fd02f4076ffa" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../springboot03-config/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cn/cwcofffee/HelloWorldApplicationBoot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/cwcofffee/HelloWorldApplicationBoot.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cn/cwcofffee/controller/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/cwcofffee/controller/HelloController.java" afterDir="false" />
@@ -94,7 +93,7 @@
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1571588545434" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1571588899448" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../maven/community" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -156,7 +155,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2600536" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
