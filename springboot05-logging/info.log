@@ -1,0 +1,8 @@
+2019-11-02 16:29:41.617  INFO 15380 --- [main] .c.s.Springboot05LoggingApplicationTests : Starting Springboot05LoggingApplicationTests on DESKTOP-4PDEUT4 with PID 15380 (started by 陈伟 in F:\study\springboot-project\springboot05-logging)
+2019-11-02 16:29:41.619  INFO 15380 --- [main] .c.s.Springboot05LoggingApplicationTests : No active profile set, falling back to default profiles: default
+2019-11-02 16:29:43.270  INFO 15380 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-11-02 16:29:43.655  INFO 15380 --- [main] .c.s.Springboot05LoggingApplicationTests : Started Springboot05LoggingApplicationTests in 2.621 seconds (JVM running for 3.946)
+2019-11-02 16:29:43.846  INFO 15380 --- [main] .c.s.Springboot05LoggingApplicationTests : 这是info日志
+2019-11-02 16:29:43.847  WARN 15380 --- [main] .c.s.Springboot05LoggingApplicationTests : 这是warn日志
+2019-11-02 16:29:43.847 ERROR 15380 --- [main] .c.s.Springboot05LoggingApplicationTests : 这是error日志
+2019-11-02 16:29:43.863  INFO 15380 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
