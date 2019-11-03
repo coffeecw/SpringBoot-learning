@@ -599,3 +599,124 @@ xxxProperties:封装配置文件中相关属性
 我们怎么知道哪些自动配置类生效；
 
 我们可以通过启用 debug=true属性；来让控制台打印自动配置报告，这样我们就可以很方便的知道哪些自动配置类生效；  
+## 三、SpringBoot与日志  
+
+### 1、市面上的日志框架:  
+  JUL、JCL、Jboss-loggig、logback、log4j、log4j2、slf4j等等
+
+  日志抽象层     |    日志实现  
+-|-     |-
+JCL(jakarta Commons Logging),**SLF4j(Simple Logging Facade for Java)**,Jboss-logging      |  Log4j JUL(java.util.logging) Log4j2 **Logback**   
+
+日志抽象层:SLF4j;
+日志实现:Logback;
+
+SpringBoot底层是Spring框架,Spring框架默认采用的是JCL  
+**SpringBoot选用SLF4j和Logback;**  
+
+### 2、SLF4j的使用  
+开发的时候，日志记录方法的调用，不应该来直接调用日志的实现类，而是调用日志抽象层里面的方法  
+[SLF4j用户手册](http://www.slf4j.org/manual.html)
+
+#### 1、如何在系统中使用SLF4j  
+给系统里面导入slf4j的jar和logback的实现jar   
+```java
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+public class HelloWorld {
+  public static void main(String[] args) {
+    Logger logger = LoggerFactory.getLogger(HelloWorld.class);
+    logger.info("Hello World");
+  }
+}
+```  
+SLF4j用法图解:  
+![SLF4j图解](./images/concrete-bindings.png)  
+
+每一个日志的实现框架都有自己的配置文件，使用slf4j以后，**配置文件还是做成日志实现框架自己本身的配置文件**;  
+
+#### 2、遗留问题 
+系统使用(slf4j+logback):依赖Spring(Commons-logging)、MyBatis等  
+统一日志记录，即使是别的框架和我一起统一使用slf4j进行输出?  
+![](./images/legacy.png)  
+
+**如何让系统中所有的日志统一到slf4j;**  
+1、将系统中其他的日志框架先排除出去   
+2、用中间包来替换原有的日志框架  
+3、导入slf4j其他的实现  
+
+#### 3、SpringBoot日志关系  
+```xml
+ <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter</artifactId>
+      <version>2.2.0.RELEASE</version>
+      <scope>compile</scope>
+  </dependency>
+```
+
+SpringBoot使用它来做日志功能;
+```xml
+<dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-logging</artifactId>
+      <version>2.2.0.RELEASE</version>
+      <scope>compile</scope>
+</dependency>
+```
+底层依赖关系  
+![springboot日志依赖关系](./images/SpringBoot的日志依赖.png)  
+总结:  
+1、SpringBoot底层也是使用slf4j+logback的方式进行日志的记录  
+2、SpringBoot也把其他的日志都替换成了slf4j  
+3、中间替换包  
+4、如果我们要引入其他框架，一定要把这个框架默认的日志依赖移除  
+例如:Spring框架用的是commons-logging;  
+    **SpringBoot能自动适配所有的日志，而且底层使用slf4j+logback的方式记录日志，引入其他框架的时候，需要把这个框架依赖的日志框架排除掉。**  
+
+#### 4、日志使用  
+##### 1、默认配置  
+SpringBoot默认帮我们配置好了日志;  
+```java
+   //记录器
+    Logger logger = LoggerFactory.getLogger(getClass());
+    @Test
+    public void contextLoads() {
+        //日志级别
+        //由低到高  trace<debug<info<warn<error
+        //可以调整输出的日志级别;日志就只会在这个级别以后的高级别生效
+        logger.trace("这是trace日志");
+        logger.debug("这是debug日志");
+        //SpringBoot默认给我们使用的是info级别的，没有指定级别的就用SpringBoot默认规定的级别;root级别
+        logger.info("这是info日志");
+        logger.warn("这是warn日志");
+        logger.error("这是error日志");
+
+    }
+```
+```java
+日志输出格式：
+		%d表示日期时间，
+		%thread表示线程名，
+		%-5level：级别从左显示5个字符宽度
+		%logger{50} 表示logger名字最长50个字符，否则按照句点分割。 
+		%msg：日志消息，
+		%n是换行符
+    -->
+    %d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n
+```
+SpringBoot修改日志的默认配置  
+```java
+#指定日志级别
+logging.level.cn.cwcoffee=info
+#指定日志的文件名
+logging.file.name=info.log
+#指定日志的文件的路径(默认是当前项目路径)
+logging.file.path=
+
+#指定控制台输出的日志格式
+logging.pattern.console=%d{yyyy-MM-dd} [%thread] %-5level %logger{50} - %msg%n
+#指定日志文件的输出格式
+logging.pattern.file=%d{yyyy-MM-dd} === [%thread] === %-5level === %logger{50} ==== %msg%n
+```
