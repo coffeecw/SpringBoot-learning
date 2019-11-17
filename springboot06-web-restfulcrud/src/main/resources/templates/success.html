@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>成功</title>
+</head>
+<body>
+<h1>成功</h1>
+<!--th:text 将div的文本内容设置为-->
+<div th:text="${hello}">这里显示静态页面的信息</div>
+<div th:utext="${hello}"></div>
+<hr>
+<h3 th:text="${user}" th:each="user:${users}"></h3>
+<hr>
+<h3 th:each="user:${users}">
+    <span>[[${user}]]</span>
+</h3>
+</body>
+</html>
