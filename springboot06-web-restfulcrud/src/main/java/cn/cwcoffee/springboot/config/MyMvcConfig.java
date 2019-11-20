@@ -1,7 +1,7 @@
 package cn.cwcoffee.springboot.config;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
@@ -16,5 +16,18 @@ public class MyMvcConfig extends WebMvcConfigurerAdapter {
     public void addViewControllers(ViewControllerRegistry registry) {
         // 浏览器发送 /cwcoffee 请求来到 success
         registry.addViewController("/cwcoffee").setViewName("success");
+    }
+
+    //所有的WebMvcConfigurerAdapter组件会一起起作用
+    @Bean//将组件注册在容器中
+    public WebMvcConfigurerAdapter webMvcConfigurerAdapter(){
+        WebMvcConfigurerAdapter adapter = new WebMvcConfigurerAdapter() {
+            @Override
+            public void addViewControllers(ViewControllerRegistry registry) {
+                registry.addViewController("/").setViewName("login");
+                registry.addViewController("/login.html").setViewName("login");
+            }
+        };
+        return adapter;
     }
 }
