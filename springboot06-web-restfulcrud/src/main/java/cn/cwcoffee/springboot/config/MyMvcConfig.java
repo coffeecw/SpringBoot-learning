@@ -1,7 +1,9 @@
 package cn.cwcoffee.springboot.config;
 
+import cn.cwcoffee.springboot.component.MyLocaleResolver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
@@ -30,4 +32,10 @@ public class MyMvcConfig extends WebMvcConfigurerAdapter {
         };
         return adapter;
     }
+    // 国际化注入
+    @Bean
+    public LocaleResolver localeResolver(){
+        return new MyLocaleResolver();
+    }
+
 }
