@@ -1,5 +1,10 @@
 package cn.cwcoffee.springboot.entities;
 
+
+/**
+ * @Author cw
+ * @Date 2019/11/25 11:35
+ */
 public class Department {
 
 	private Integer id;

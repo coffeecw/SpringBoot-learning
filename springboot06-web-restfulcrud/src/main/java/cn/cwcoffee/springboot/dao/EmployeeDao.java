@@ -1,15 +1,18 @@
 package cn.cwcoffee.springboot.dao;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-
-
 import cn.cwcoffee.springboot.entities.Department;
 import cn.cwcoffee.springboot.entities.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * @Author cw
+ * @Date 2019/11/25 11:35
+ */
 @Repository
 public class EmployeeDao {
 
@@ -38,8 +41,9 @@ public class EmployeeDao {
 		employee.setDepartment(departmentDao.getDepartment(employee.getDepartment().getId()));
 		employees.put(employee.getId(), employee);
 	}
-
-	//查询所有员工
+	/**
+	 * 询所有员工
+	 */
 	public Collection<Employee> getAll(){
 		return employees.values();
 	}

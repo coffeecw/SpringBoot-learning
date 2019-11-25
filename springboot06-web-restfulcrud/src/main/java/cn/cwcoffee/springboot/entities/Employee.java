@@ -1,14 +1,19 @@
 package cn.cwcoffee.springboot.entities;
 
 import java.util.Date;
-
+/**
+ * @Author cw
+ * @Date 2019/11/25 11:35
+ */
 public class Employee {
 
 	private Integer id;
     private String lastName;
 
     private String email;
-    //1 male, 0 female
+    /**
+     * 1 male, 0 female
+     */
     private Integer gender;
     private Department department;
     private Date birth;

@@ -1,6 +1,5 @@
 package cn.cwcoffee.springboot.component;
 
-import org.springframework.context.annotation.Configuration;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.LocaleResolver;
 
@@ -9,7 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Locale;
 
 /**
- * created by coffeecw 2019/11/23
+ * @Author cw
+ * @Date 2019/11/23
  */
 public class MyLocaleResolver implements LocaleResolver {
     @Override

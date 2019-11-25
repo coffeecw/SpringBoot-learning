@@ -1,20 +1,23 @@
 package cn.cwcoffee.springboot.dao;
 
+import cn.cwcoffee.springboot.entities.Department;
+import org.springframework.stereotype.Repository;
+
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import cn.cwcoffee.springboot.entities.Department;
-import org.springframework.stereotype.Repository;
-
-
+/**
+ * @Author cw
+ * @Date 2019/11/25 11:35
+ */
 @Repository
 public class DepartmentDao {
 
 	private static Map<Integer, Department> departments = null;
 	
 	static{
-		departments = new HashMap<Integer, Department>();
+		departments = new HashMap<>();
 		
 		departments.put(101, new Department(101, "D-AA"));
 		departments.put(102, new Department(102, "D-BB"));
