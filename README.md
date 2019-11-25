@@ -1150,7 +1150,7 @@ public class WebMvcAutoConfiguration {
 3)、在SpringBoot中会有很多的xxxCustomizer帮助我们进行定制配置
 
 ### 6、RestfulCRUD  
-1、默认访问首页  
+#### 1、默认访问首页  
 ```java
 /**
  * created by coffeecw 2019/11/14
@@ -1179,7 +1179,7 @@ public class MyMvcConfig extends WebMvcConfigurerAdapter {
     }
 }
 ```  
-2、国际化  
+#### 2、国际化  
 
 以前SpringMVC的做法:
 - 编写国际化配置文件  
@@ -1315,3 +1315,25 @@ public class MyLocaleResolver implements LocaleResolver {
     }
 }
 ```
+#### 3、登录  
+开发期间模板引擎修改以后，要实时生效  
+
+1. 禁用模板引擎的缓存  
+```properties
+#禁用模板引擎thymeleaf的缓存
+spring.thymeleaf.cache=false
+```
+2. 页面修改完成后Ctrl+f9,重新编译  
+
+登录错误消息的显示  
+```html
+<p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
+```  
+防止表单重复提交----重定向
+
+![](./images/表单重复提交.png)
+#### 4、拦截器进行登录检查  
+
+登录检查的原因:防止用户未登录直接访问主页  http://localhost:8080/crud/main.html  这样的话，登录功能将毫无意义.  
+
+
