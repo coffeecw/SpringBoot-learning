@@ -16,13 +16,13 @@ import java.util.Map;
 @Repository
 public class EmployeeDao {
 
-	private static Map<Integer, Employee> employees = null;
+	private static Map<Integer, Employee> employees;
 	
 	@Autowired
 	private DepartmentDao departmentDao;
 	
 	static{
-		employees = new HashMap<Integer, Employee>();
+		employees = new HashMap<>();
 
 		employees.put(1001, new Employee(1001, "E-AA", "aa@163.com", 1, new Department(101, "D-AA")));
 		employees.put(1002, new Employee(1002, "E-BB", "bb@163.com", 1, new Department(102, "D-BB")));
@@ -42,7 +42,7 @@ public class EmployeeDao {
 		employees.put(employee.getId(), employee);
 	}
 	/**
-	 * 询所有员工
+	 * 查询所有员工
 	 */
 	public Collection<Employee> getAll(){
 		return employees.values();

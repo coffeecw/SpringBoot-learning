@@ -25,7 +25,10 @@ public class EmpController {
     @RequestMapping("/emps")
     public String getEmps(Model model){
         Collection<Employee> employees = employeeDao.getAll();
+        //放在请求域中
         model.addAttribute("emps",employees);
+        //thymeleaf自动会拼串
+        //classpath:/templates/xxx.html
         return "emp/list";
     }
 }
