@@ -1336,4 +1336,55 @@ spring.thymeleaf.cache=false
 
 登录检查的原因:防止用户未登录直接访问主页  http://localhost:8080/crud/main.html  这样的话，登录功能将毫无意义.  
 
+```java
+@Configuration
+public class MyMvcConfig extends WebMvcConfigurerAdapter {
+    /**
+     * 使用WebMvcConfigurerAdapter扩展SpringMVC的功能
+     * @EnableWebMvc  标注这个注解全面接管SpringMVC的自动配置，，所有都是我们自己配置；所有的SpringMVC的自动配置都失效了
+     */
+    @Override
+    public void addViewControllers(ViewControllerRegistry registry) {
+        // 浏览器发送 /cwcoffee 请求来到 success
+        registry.addViewController("/cwcoffee").setViewName("success");
+    }
+
+    /**
+     * 所有的WebMvcConfigurerAdapter组件会一起起作用,将组件注册在容器中
+     * @return
+     */
+    @Bean
+    public WebMvcConfigurerAdapter webMvcConfigurerAdapter(){
+        WebMvcConfigurerAdapter adapter = new WebMvcConfigurerAdapter() {
+            @Override
+            public void addViewControllers(ViewControllerRegistry registry) {
+                registry.addViewController("/").setViewName("login");
+                registry.addViewController("/login.html").setViewName("login");
+                //请求路径添加视图解析,登录成功实现重定向
+                registry.addViewController("/main.html").setViewName("dashboard");
+            }
+
+            /**
+             * 添加拦截器
+             * @param registry
+             */
+            @Override
+            public void addInterceptors(InterceptorRegistry registry) {
+                //静态资源: *.css,*.js路径:/asserts/**,/webjars/**,也需要排除掉
+                registry.addInterceptor(new LoginHandlerInterceptor()).addPathPatterns("/**")
+                .excludePathPatterns("/login.html","/","/user/login","/asserts/**","/webjars/**");
+            }
+        };
+        return adapter;
+    }
+```  
+#### 5、CRUD员工列表  
+1. 实验要求:  
+RESTfulCRUD:CRUD满足Rest风格;  
+URI:/资源名称/资源标识  &nbsp;&nbsp;&nbsp;&nbsp;HTTP请求方式区分对资源的CRUD  
+普通CRUD(URI来区分操作):  查询:getEmp   &nbsp;&nbsp;  RESTfulCRUD: emp--GET    
+普通CRUD(URI来区分操作):  添加:addEmp?xxx  &nbsp;&nbsp;   RESTfulCRUD: emp--POST  
+普通CRUD(URI来区分操作):  修改:updateEmp?id=xxx&xxx=xx     RESTfulCRUD: emp/{id}--PUT  
+普通CRUD(URI来区分操作):  修改:deleteEmp?id=1     RESTfulCRUD: emp/{id}--DELETE
+
 

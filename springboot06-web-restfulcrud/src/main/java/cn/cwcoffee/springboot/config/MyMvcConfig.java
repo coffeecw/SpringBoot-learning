@@ -40,12 +40,15 @@ public class MyMvcConfig extends WebMvcConfigurerAdapter {
                 registry.addViewController("/main.html").setViewName("dashboard");
             }
 
+            /**
+             * 添加拦截器
+             * @param registry
+             */
             @Override
             public void addInterceptors(InterceptorRegistry registry) {
-                //静态资源: *.css,*.js
-                //SpringBoot做好了静态资源映射
+                //静态资源: *.css,*.js路径:/asserts/**,/webjars/**,也需要排除掉
                 registry.addInterceptor(new LoginHandlerInterceptor()).addPathPatterns("/**")
-                .excludePathPatterns("/login.html","/","/user/login");
+                .excludePathPatterns("/login.html","/","/user/login","/asserts/**","/webjars/**");
             }
         };
         return adapter;
