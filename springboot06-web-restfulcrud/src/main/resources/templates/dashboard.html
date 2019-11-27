@@ -6,44 +6,17 @@
 		<title>Dashboard Template for Bootstrap</title>
 		<!-- Bootstrap core CSS -->
 		<link href="asserts/css/bootstrap.min.css" th:href="@{/asserts/css/bootstrap.min.css}" rel="stylesheet">
-
 		<!-- Custom styles for this template -->
 		<link href="asserts/css/dashboard.css" th:href="@{/asserts/css/dashboard.css}" rel="stylesheet">
-		<!--<style type="text/css">
-			/* Chart.js */
-			
-			@-webkit-keyframes chartjs-render-animation {
-				from {
-					opacity: 0.99
-				}
-				to {
-					opacity: 1
-				}
-			}
-			
-			@keyframes chartjs-render-animation {
-				from {
-					opacity: 0.99
-				}
-				to {
-					opacity: 1
-				}
-			}
-			
-			.chartjs-render-monitor {
-				-webkit-animation: chartjs-render-animation 0.001s;
-				animation: chartjs-render-animation 0.001s;
-			}
-		</style>-->
 	</head>
 
 	<body>
 		<!--引入topbar-->
-		<div th:replace="commons/bar::topbar(activeUrl='main.html')"></div>
+		<div th:replace="commons/bar::topbar"></div>
 		<div class="container-fluid">
 			<div class="row">
 				<!--引入sidebar-->
-				<div th:replace="commons/bar::#sidebar(activeUrl='emps')"></div>
+				<div th:replace="commons/bar::#sidebar(activeUrl='main.html')"></div>
 			</div>
 		</div>
 	</body>
