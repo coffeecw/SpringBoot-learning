@@ -56,13 +56,35 @@
 									<td th:text="${#dates.format(emp.birth,'yyyy-MM-dd HH:mm:ss')}"></td>
 									<td>
 										<a class="btn btn-sm btn-success" th:href="@{/emp/}+${emp.id}">修改</a>
-										<button class="btn btn-sm btn-danger">删除</button>
+										<button th:attr="del_uri=@{/emp/}+${emp.id}" type="submit" class="btn btn-sm btn-danger deleteBtn">删除</button>
 									</td>
 							</tbody>
 						</table>
 					</div>
 				</main>
+				<form  method="post" id="deleteEmpForm">
+					<input type="hidden" name="_method" value="delete" />
+				</form>
 			</div>
 		</div>
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script type="text/javascript" src="asserts/js/jquery-3.2.1.slim.min.js" th:src="@{/webjars/jquery/3.3.1/jquery.js}"></script>
+	<script type="text/javascript" src="asserts/js/popper.min.js" th:src="@{/webjars/popper.js/1.11.1/dist/popper.js}"></script>
+	<script type="text/javascript" src="asserts/js/bootstrap.min.js" th:src="@{/webjars/bootstrap/4.0.0/js/bootstrap.js}"></script>
+
+	<!-- Icons -->
+	<script type="text/javascript" src="asserts/js/feather.min.js" th:src="@{/asserts/js/feather.min.js}"></script>
+	<script>
+		feather.replace()
+	</script>
+	<script>
+		$(".deleteBtn").click(function () {
+			//删除当前员工
+			$("#deleteEmpForm").attr("action",$(this).attr("del_uri")).submit();
+			return false;
+		});
+	</script>
 	</body>
 </html>
