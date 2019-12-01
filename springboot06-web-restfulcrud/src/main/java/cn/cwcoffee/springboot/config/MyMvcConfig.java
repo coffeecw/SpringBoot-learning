@@ -47,8 +47,8 @@ public class MyMvcConfig extends WebMvcConfigurerAdapter {
             @Override
             public void addInterceptors(InterceptorRegistry registry) {
                 //静态资源: *.css,*.js路径:/asserts/**,/webjars/**,也需要排除掉
-                registry.addInterceptor(new LoginHandlerInterceptor()).addPathPatterns("/**")
-                .excludePathPatterns("/login.html","/","/user/login","/asserts/**","/webjars/**");
+//                registry.addInterceptor(new LoginHandlerInterceptor()).addPathPatterns("/**")
+//                .excludePathPatterns("/login.html","/","/user/login","/asserts/**","/webjars/**");
             }
         };
         return adapter;
