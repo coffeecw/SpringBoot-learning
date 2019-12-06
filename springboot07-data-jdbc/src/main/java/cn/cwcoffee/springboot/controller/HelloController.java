@@ -18,7 +18,7 @@ public class HelloController {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    @GetMapping("/hello")
+    @GetMapping("/query")
     @ResponseBody
     public List<Map<String, Object>> hello(){
         List<Map<String, Object>> list = jdbcTemplate.queryForList("select * from department");
