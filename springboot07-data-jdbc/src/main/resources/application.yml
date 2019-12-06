@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql://106.75.24.142:3307/jdbc?characterEncoding=utf8&useSSL=false
+    driver-class-name: com.mysql.jdbc.Driver
+    #执行建表语句
+    #schema: classpath:department.sql 每次运行都会执行建表语句，因而注释
