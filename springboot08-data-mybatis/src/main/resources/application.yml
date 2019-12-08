@@ -2,11 +2,14 @@ spring:
   datasource:
     username: root
     password: 123456
-    url: jdbc:mysql://106.75.24.142:3307/jdbc?characterEncoding=utf8&useSSL=false
+    url: jdbc:mysql://106.75.24.142:3307/mybatis?characterEncoding=utf8&useSSL=false
     driver-class-name: com.mysql.jdbc.Driver
+    #使用Druid数据源
     type: com.alibaba.druid.pool.DruidDataSource
     #执行建表语句
-    #schema: classpath:department.sql 每次运行都会执行建表语句，因而注释
+#    schema:
+#        - classpath:department.sql
+#        - classpath:employee.sql
       #   数据源其他配置
     initialSize: 5
     minIdle: 5
@@ -25,3 +28,7 @@ spring:
     useGlobalDataSourceStat: true
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
 
+#配置mybatis的全局配置文件和映射文件
+mybatis:
+  config-location: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mybatis/mapper/*.xml
