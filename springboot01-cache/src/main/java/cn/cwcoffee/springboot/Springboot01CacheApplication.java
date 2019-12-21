@@ -20,6 +20,13 @@ import org.springframework.cache.annotation.EnableCaching;
  *              @Cacheable
  *              @CacheEvict
  *              @CachePut
+ * 默认使用的是ConcurrentMapCacheManager==ConrrentMapCache;将数据保存在ConcurrentMap<Object,Object>
+ * 开发中使用的是缓存中间件:redis、memcached、ehcache
+ * 三、整合redis作为缓存
+ * Redis 是一个开源（BSD许可）的，内存中的数据结构存储系统，它可以用作数据库、缓存和消息中间件。
+ *  1、安装redis:使用docker安装
+ *  2、引入redis的starter场景启动器
+ *  3、配置redis
  */
 @SpringBootApplication
 @MapperScan("cn.cwcoffee.springboot.mapper")

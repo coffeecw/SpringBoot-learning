@@ -3,15 +3,15 @@ package cn.cwcoffee.springboot.service;
 import cn.cwcoffee.springboot.bean.Employee;
 import cn.cwcoffee.springboot.mapper.EmployeeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.CachePut;
-import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.*;
 import org.springframework.stereotype.Service;
 
 /**
  * @Author cw
  * @Date 2019/12/14 23:45
  */
+//抽取缓存的公共配置
+@CacheConfig(cacheNames = "emp")
 @Service
 public class EmployeeService {
 
@@ -51,7 +51,7 @@ public class EmployeeService {
      * @param employee
      * @return
      */
-    @CachePut(cacheNames = "emp",key = "#employee.id")
+    @CachePut(/*cacheNames = "emp",*/key = "#employee.id")
     public Employee updateEmp(Employee employee){
         System.out.println("update:"+employee);
         employeeMapper.updateEmp(employee);
@@ -68,10 +68,24 @@ public class EmployeeService {
      *      代表缓存清除操作是在方法之前执行，无论方法是否出现异常,缓存都清除
      * @param id
      */
-    @CacheEvict(cacheNames = "emp",beforeInvocation = true/*key = "#id"*/)
+    @CacheEvict(/*cacheNames = "emp",*/beforeInvocation = true/*key = "#id"*/)
     public void deleteEmp(Integer id){
         System.out.println("delEmp:"+id);
 //        employeeMapper.deleteEmp(id);
         int i = 10/0;
+    }
+    //定义复杂的缓存规则
+    //注意当key为null时会报错
+    @Caching(
+            cacheable = {
+                    @Cacheable(value = "emp",key = "#lastName")
+            },
+            put = {
+                    @CachePut(value = "emp",key = "#result.id"),
+                    @CachePut(value = "emp",key = "#result.gender")
+            }
+    )
+    public Employee getEmpByLastName(String lastName) {
+        return employeeMapper.getEmpByLastName(lastName);
     }
 }
