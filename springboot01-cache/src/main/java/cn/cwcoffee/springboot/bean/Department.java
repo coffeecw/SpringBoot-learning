@@ -1,6 +1,12 @@
 package cn.cwcoffee.springboot.bean;
 
-public class Department {
+import java.io.Serializable;
+
+/**
+ * @Author cw
+ * 实现序列化===》默认如果保存对象，使用jdk序列化机制，序列化后的数据保存到redis中
+ */
+public class Department implements Serializable {
 	
 	private Integer id;
 	private String departmentName;
