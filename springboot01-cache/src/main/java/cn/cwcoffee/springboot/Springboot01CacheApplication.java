@@ -6,6 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
 
 /**
+ * @Author cw
+ *
  * 一、搭建基本环境
  * 1、导入数据库文件，创建出department和employee表
  * 2、创建Javabean封装数据
@@ -27,10 +29,21 @@ import org.springframework.cache.annotation.EnableCaching;
  *  1、安装redis:使用docker安装
  *  2、引入redis的starter场景启动器
  *  3、配置redis
+ *  4、测试缓存
+ *      原理:CacheManager==Cache 缓存组件来实际给缓存中存取数据
+ *      1）、引入Redis的starter,容器中保存的是RedisCacheManager
+ *      2）、RedisCacheManager帮我们创建RedisCache来作为缓存组件，RedisCache通过操作redis缓存数据
+ *      3）、默认保存数据k-v都是Object,利用序列化保存，如何保存为json
+ *              1、引入Redis的starter、CacheManager变为RedisCacheManager
+ *              2、默认创建的RedisCacheManager操作Redis的时候使用的是 RedisTemplate<Object, Object>
+ *              3、RedisTemplate<Object, Object> 默认是使用Jdk的序列化机制
+ *     4）、自定义CacheManager
  */
 @SpringBootApplication
 @MapperScan("cn.cwcoffee.springboot.mapper")
-//开启基于注解的缓存
+/**
+ * 开启基于注解的缓存
+ */
 @EnableCaching
 public class Springboot01CacheApplication {
 

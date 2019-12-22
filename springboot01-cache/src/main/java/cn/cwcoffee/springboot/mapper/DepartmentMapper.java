@@ -1,6 +1,8 @@
 package cn.cwcoffee.springboot.mapper;
 
+import cn.cwcoffee.springboot.bean.Department;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 
 /**
  * @Author cw
@@ -8,4 +10,6 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface DepartmentMapper {
+    @Select("select * from department where id = #{id}")
+    Department getDeptById(Integer id);
 }

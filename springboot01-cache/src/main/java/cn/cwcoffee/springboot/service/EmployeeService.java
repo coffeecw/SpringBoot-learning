@@ -6,12 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.*;
 import org.springframework.stereotype.Service;
 
+
+
+
 /**
  * @Author cw
  * @Date 2019/12/14 23:45
  */
 //抽取缓存的公共配置
-@CacheConfig(cacheNames = "emp")
+@CacheConfig(cacheNames = "emp",cacheManager = "empRedisCacheManager")
+
 @Service
 public class EmployeeService {
 
